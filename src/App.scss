@@ -1,0 +1,27 @@
+$bgrdColorGrayTheme: #e5e7eb;
+$bgrdColorLightTheme: rgb(247, 231, 180);
+$bgrdGradColorLightTheme: radial-gradient(
+  circle,
+  rgba(247, 231, 180, 1) 0%,
+  rgba(251, 249, 232, 1) 100%
+);
+@import '~bootstrap/scss/bootstrap';
+.App {
+  padding: 1px;
+  .Content {
+    background-color: $bgrdColorGrayTheme;
+    margin: 0px 2rem;
+    top: 10rem;
+    border-radius: 7px;
+    min-height: 40rem;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

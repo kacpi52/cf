@@ -1,10 +1,10 @@
 import express, { Express, Request, Response } from 'express'
 import dotenv from 'dotenv'
+const { SERVER_PORT = 3012 } = process.env
 
 dotenv.config()
 
 const app: Express = express()
-const { SERVER_PORT = 3012 } = process.env
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Express + TypeScript Server')

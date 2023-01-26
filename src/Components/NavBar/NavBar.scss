@@ -1,0 +1,30 @@
+.NavBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-height: 2rem;
+  padding: 2% 10%;
+  color: aqua;
+  &__logo {
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 7px;
+    cursor: pointer;
+  }
+  &__links {
+    list-style: none;
+    & li {
+      display: inline-block;
+      padding: 0px 20px;
+    }
+    & a {
+      transition: all 0.3s ease 0s;
+      text-decoration: none;
+      color: #51d5f7;
+    }
+    & a:hover {
+      color: #0088a9;
+    }
+  }
+}
