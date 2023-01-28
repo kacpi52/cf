@@ -1,4 +1,4 @@
-import { Schema, model, connect } from 'mongoose'
+import { Schema, model } from 'mongoose'
 
 //document interface
 interface Car {
@@ -16,7 +16,7 @@ interface Car {
 const carPostSchema = new Schema<Car>({
   brand: { type: String, required: true },
   model: { type: String, required: true },
-  productionYear: { type: Number, required: true },
+  productionYear: { type: Number, required: true, min: 1930 },
   frontWheelSize: { type: Number, required: true },
   frontWheelWide: { type: Number, required: true },
   rearWheelSize: { type: Number, required: true },
@@ -24,3 +24,7 @@ const carPostSchema = new Schema<Car>({
   isCustomBody: { type: Boolean, required: true },
   kindOfBody: String,
 })
+
+const CarPost = model<Car>('CarPost', carPostSchema)
+
+export default CarPost
