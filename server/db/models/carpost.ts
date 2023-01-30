@@ -11,6 +11,8 @@ interface Car {
   rearWheelWide: number
   isCustomBody: boolean
   kindOfBody?: string
+  isStockSuspension: boolean
+  kindOfSuspension: string
 }
 //schema
 const carPostSchema = new Schema<Car>({
@@ -23,6 +25,8 @@ const carPostSchema = new Schema<Car>({
   rearWheelWide: { type: Number, required: true },
   isCustomBody: { type: Boolean, required: true },
   kindOfBody: String,
+  isStockSuspension: { type: Boolean, required: true },
+  kindOfSuspension: String,
 })
 
 const CarPost = model<Car>('CarPost', carPostSchema)
