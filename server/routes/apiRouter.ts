@@ -8,7 +8,7 @@ apiRouter.get('/carposts', apiActions.getAllCarPosts)
 //pobieranie konretnego carposta
 apiRouter.get('/carposts/:id', apiActions.getCarPost)
 //zapisywanie carposta
-apiRouter.post('/carposts/:id/add', apiActions.addCarPost)
+apiRouter.post('/carposts/add', apiActions.addCarPost)
 //edytowanie
 apiRouter.put('/carposts/:id/edit', apiActions.editCarPost)
 //usuwanie

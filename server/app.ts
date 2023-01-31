@@ -6,8 +6,9 @@ const app: Express = express()
 //init db
 require('./db/mongoose') // moze poprawic na es2018 import itd
 //middleware session, public, body parser
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true })) // to chyba niepotrzebnie wogole bo nie bede tak wysylal
 app.use(bodyParser.json())
+//app.use(express.json())  czy ten bodyparser jest tu potrzebny skoro moge tego parsera expressowego uzyc ?
 //mount routes
 app.use(apiRouter)
 export default app
