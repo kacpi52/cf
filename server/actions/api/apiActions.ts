@@ -49,7 +49,8 @@ class apiActionsClass {
     res.status(200).json(editCarPost)
   }
   async deleteCarPost(req: Request, res: Response) {
-    const id = req.params.id
+    await CarPost.deleteOne({ _id: new Types.ObjectId(req.params.id) })
+    res.status(202)
   }
 }
 
