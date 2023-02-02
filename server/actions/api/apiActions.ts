@@ -1,15 +1,21 @@
 import { Request, Response } from 'express'
+import { UpdateResult } from 'mongodb'
+import { Types } from 'mongoose'
 import CarPost from 'server/db/models/carpost'
+
 class apiActionsClass {
   async getAllCarPosts(req: Request, res: Response) {
     const allPosts = await CarPost.find()
     res.status(200).json(allPosts)
   }
   async getCarPost(req: Request, res: Response) {
-    const { id } = req.params
-    const singleCarPost = await CarPost.findOne({ _id: id })
+    //const { id } = req.params
+    //const id = new ObjectId()
+    //{ _id: new Types.ObjectId(user._id) }
+    const singleCarPost = await CarPost.findOne({
+      _id: new Types.ObjectId(req.params.id),
+    })
     res.send(singleCarPost)
-    console.log(id)
   }
   async addCarPost(req: Request, res: Response) {
     const newCarPost = new CarPost({
@@ -30,15 +36,17 @@ class apiActionsClass {
       res.status(201).json(newCarPost)
     } catch (error: any) {
       // jaki typ do errorow z try catcha  ?
-      res.status(422).json({ errors: error.errors })
+      res.status(500).json({ errors: error.errors })
     }
   }
   async editCarPost(req: Request, res: Response) {
-    const { id } = req.params
     const editData = req.body
-    const editCarPost = await CarPost.replaceOne({ _id: id }, editData) // sprawdz czy sam zapis _id i co z tym typem
-    res.send(editCarPost)
-    console.log(editData)
+    const editCarPost = await CarPost.findOneAndUpdate(
+      { _id: new Types.ObjectId(req.params.id) },
+      editData
+    ).exec()
+    console.log(editCarPost)
+    res.status(200).json(editCarPost)
   }
   async deleteCarPost(req: Request, res: Response) {
     const id = req.params.id
@@ -47,3 +55,6 @@ class apiActionsClass {
 
 const apiActions: apiActionsClass = new apiActionsClass()
 export default apiActions
+
+//loadState [true=>ikonka ladwoania , error =>false ]
+//datastate dane z fetch ----- przejrzec hooka fetchState (arr)=> [...arr,]
