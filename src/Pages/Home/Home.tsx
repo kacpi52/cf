@@ -1,10 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import './Home.scss'
 import NavBar from '../../Components/NavBar/NavBar'
 import SingleElem from 'src/Components/SingleElem/SingleElem'
+import { getCarPostsAxios, carPostsArrType } from 'src/lib/apiService'
 
 const Home = (): JSX.Element => {
+  const [loadingState, setLoadingState] = useState(true),
+    [loadDataError, setLoadDataError] = useState(false),
+    [postDataState, setPostDataState] = useState<carPostsArrType>()
+  useEffect(() => {
+    const fun = async () => {
+      const loadedData = await getCarPostsAxios()
+      setLoadingState(false)
+      setPostDataState(loadedData)
+    }
+    fun()
+  }, [])
   return (
     <div className="home">
       <NavBar />
