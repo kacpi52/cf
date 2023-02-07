@@ -1,10 +1,10 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./App.scss";
-import Home from "./Pages/Home/Home";
-import User from "./Pages/User/User";
+import React from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import './App.scss'
+import Home from './Pages/Home/Home'
+import User from './Pages/User/User'
 
-function App(): JSX.Element {
+const App: React.FC = () => {
   return (
     <div className="App">
       <BrowserRouter>
@@ -14,7 +14,7 @@ function App(): JSX.Element {
         </Routes>
       </BrowserRouter>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

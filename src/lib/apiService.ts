@@ -1,6 +1,6 @@
 import axios from 'axios'
-const dbUrl = 'http://localhost:3021/carposts'
-type carPostType = {
+const dbUrl = 'http://localhost:3021'
+export type carPostType = {
   _id: string
   brand: string
   model: string
@@ -14,24 +14,24 @@ type carPostType = {
   isStockSuspension: boolean
   kindOfSuspension: string
 }
-export type carPostsArrType = {
-  data: carPostType[]
-}
-const getCarPostsAxios = async () => {
+
+const getCarPostsAxios = async (
+  method: 'get' | 'post' | 'put' | 'patch' | 'delete',
+  path: string,
+  data?: Record<string, any>
+): Promise<carPostType[] | any> => {
   try {
-    const { data, status } = await axios.get<carPostsArrType>(dbUrl, {
+    const { data, status } = await axios({
+      method: method,
+      url: dbUrl + path,
       headers: { Accept: 'application/json' },
     })
     console.log(data)
     console.log(`server status is ${status}`)
     return data
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.log(`error message is : ${error.message}`)
-      return error.message
-    } else {
-      console.log('an unexpected error')
-    }
+    console.log(error)
+    throw error
   }
 }
 
