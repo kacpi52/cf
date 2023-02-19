@@ -15,10 +15,10 @@ export type carPostType = {
   kindOfSuspension: string
 }
 
-const getCarPostsAxios = async (
+const allRequestsCarPostsAxios = async (
   method: 'get' | 'post' | 'put' | 'patch' | 'delete',
   path: string,
-  data?: Record<string, any>
+  requestData?: Record<string, any>
 ): Promise<carPostType[] | any> => {
   try {
     const { data, status } = await axios({
@@ -34,5 +34,40 @@ const getCarPostsAxios = async (
     throw error
   }
 }
+const getAllCarPostsAxios = async (
+  path: string,
+  requestData?: Record<string, any>
+): Promise<carPostType[] | any> => {
+  try {
+    const { data, status } = await axios({
+      method: 'get',
+      url: dbUrl + path,
+      headers: { Accept: 'application/json' },
+    })
+    console.log(data)
+    console.log(`server status is ${status}`)
+    return data
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}
+const getSingleCarPostsAxios = async (
+  path: string
+): Promise<carPostType[] | any> => {
+  try {
+    const { data, status } = await axios({
+      method: 'get',
+      url: dbUrl + path,
+      headers: { Accept: 'application/json' },
+    })
+    console.log(data)
+    console.log(`server status is ${status}`)
+    return data
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}
 
-export { getCarPostsAxios }
+export { allRequestsCarPostsAxios, getAllCarPostsAxios, getSingleCarPostsAxios }

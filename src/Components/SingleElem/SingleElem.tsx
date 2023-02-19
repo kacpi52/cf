@@ -1,6 +1,10 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
+import { Image } from 'react-bootstrap'
 import './SingleElem.scss'
+import { Link } from 'react-router-dom'
+
 interface singleProps {
+  // zrobic tu porzadek z tymi interfejsami itd
   _id: string
   brand: string
   model: string
@@ -30,8 +34,28 @@ const SingleElem: React.FC<singleProps> = ({
 }) => {
   return (
     <div className="singleElem">
-      <h1>singleElem</h1>
-      {brand} , {model} , {productionYear}
+      <div className="singleElem__title">
+        {brand} {model} {productionYear}
+      </div>
+      <div className="singleElem__content">
+        <span className="singleElem__content__image">
+          <Image
+            src="https://mklr.pl/uimages/services/motokiller/i18n/pl_PL/201702/$_bmw_e36_stance_gleba_$1486680344_by_ML9.jpg?1486680344"
+            fluid={true}
+          />
+        </span>
+        <span className="singleElem__content__desc">
+          Front wheel : size {frontWheelSize} wide {frontWheelWide} <br />
+          Rear wheel : size {rearWheelSize} wide {rearWheelWide}
+        </span>
+        <button className="singleElem__content__button" onClick={() => {}}>
+          <a href="/single">Show Details</a>
+        </button>
+        <Link to={`/single/${_id}`} state={{ id: _id }}>
+          {' '}
+          link routerowy{' '}
+        </Link>
+      </div>
     </div>
   )
 }

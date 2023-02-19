@@ -1,4 +1,45 @@
-$bgrdColorGray: #d0dffd;
+$bgrdColorBlue: #2c1036;
+$contentBgrdColorGray: #f0f0f3;
+$buttonPrimaryColor: rgb(10, 161, 141);
+$buttonSecondaryColor: rgb(247, 33, 219);
 .singleElem {
-  background-color: $bgrdColorGray;
+  background-color: $bgrdColorBlue;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  &__title {
+    color: antiquewhite;
+    letter-spacing: 1px;
+  }
+  &__content {
+    background-color: $contentBgrdColorGray;
+    &__image {
+      max-width: 100px;
+      max-height: 10px;
+    }
+    &__desc {
+      background-color: #f0f0f3;
+      color: brown;
+    }
+    &__button {
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: $buttonPrimaryColor;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin: 1rem;
+      &:hover {
+        background-color: $buttonSecondaryColor;
+      }
+      & a {
+        text-decoration: none;
+      }
+    }
+  }
 }

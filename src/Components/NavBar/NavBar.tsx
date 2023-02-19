@@ -1,5 +1,6 @@
-import React from "react";
-import "./NavBar.scss";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import './NavBar.scss'
 const NavBar = () => {
   return (
     <div className="NavBar">
@@ -7,20 +8,18 @@ const NavBar = () => {
       <nav>
         <ul className="NavBar__links">
           <li>
-            <a href="/" className="NavBar__nav__link">
-              Home
-            </a>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <a href="/user">User</a>
+            <Link to="/user">User</Link>
           </li>
           <li>
-            <a href="/">Contact</a>
+            <Link to="/">About Us</Link>
           </li>
         </ul>
       </nav>
     </div>
-  );
-};
+  )
+}
 
-export default NavBar;
+export default NavBar

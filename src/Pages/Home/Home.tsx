@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 import './Home.scss'
 import NavBar from '../../Components/NavBar/NavBar'
 import SingleElem from 'src/Components/SingleElem/SingleElem'
-import { getCarPostsAxios, carPostType } from 'src/lib/apiService'
+import { allRequestsCarPostsAxios, carPostType } from 'src/lib/apiService'
 
 const Home: React.FC = () => {
   const [loadingState, setLoadingState] = useState<boolean>(true),
@@ -11,10 +11,8 @@ const Home: React.FC = () => {
     [postDataState, setPostDataState] = useState<carPostType[]>([])
   useEffect(() => {
     const getDataFromApi = async () => {
-      const loadedData = await getCarPostsAxios('get', '/carposts')
+      const loadedData = await allRequestsCarPostsAxios('get', '/carposts')
       loadedData.length > 1 && setPostDataState(loadedData)
-      console.dir(postDataState)
-
       setLoadingState(false)
     }
     try {
