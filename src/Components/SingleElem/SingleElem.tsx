@@ -2,23 +2,9 @@ import React from 'react'
 import { Image } from 'react-bootstrap'
 import './SingleElem.scss'
 import { Link } from 'react-router-dom'
+import { carPostDetailInterface } from 'src/utils/sharedInterfaces'
 
-interface singleProps {
-  // zrobic tu porzadek z tymi interfejsami itd
-  _id: string
-  brand: string
-  model: string
-  productionYear: number
-  frontWheelSize: number
-  frontWheelWide: number
-  rearWheelSize: number
-  rearWheelWide: number
-  isCustomBody: boolean
-  kindOfBody?: string
-  isStockSuspension: boolean
-  kindOfSuspension: string
-}
-const SingleElem: React.FC<singleProps> = ({
+const SingleElem: React.FC<carPostDetailInterface> = ({
   _id,
   brand,
   model,
@@ -49,12 +35,10 @@ const SingleElem: React.FC<singleProps> = ({
           Rear wheel : size {rearWheelSize} wide {rearWheelWide}
         </span>
         <button className="singleElem__content__button" onClick={() => {}}>
-          <a href="/single">Show Details</a>
+          <Link to={`/single/${_id}`} state={{ id: _id }}>
+            SHOW DETAILS
+          </Link>
         </button>
-        <Link to={`/single/${_id}`} state={{ id: _id }}>
-          {' '}
-          link routerowy{' '}
-        </Link>
       </div>
     </div>
   )

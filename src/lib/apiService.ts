@@ -1,19 +1,6 @@
 import axios from 'axios'
+import { carPostType, editCarPostType } from 'src/utils/sharedTypes'
 const dbUrl = 'http://localhost:3021'
-export type carPostType = {
-  _id: string
-  brand: string
-  model: string
-  productionYear: number
-  frontWheelSize: number
-  frontWheelWide: number
-  rearWheelSize: number
-  rearWheelWide: number
-  isCustomBody: boolean
-  kindOfBody?: string
-  isStockSuspension: boolean
-  kindOfSuspension: string
-}
 
 const allRequestsCarPostsAxios = async (
   method: 'get' | 'post' | 'put' | 'patch' | 'delete',
@@ -69,5 +56,48 @@ const getSingleCarPostsAxios = async (
     throw error
   }
 }
-
-export { allRequestsCarPostsAxios, getAllCarPostsAxios, getSingleCarPostsAxios }
+const addSingleCarPostsAxios = async (
+  path: string,
+  editData: editCarPostType
+): Promise<carPostType[] | any> => {
+  try {
+    const { data, status } = await axios({
+      method: 'post',
+      url: dbUrl + path,
+      data: editData,
+      headers: { Accept: 'application/json' },
+    })
+    console.log(data)
+    console.log(`server status is ${status}`)
+    return data
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}
+const editSingleCarPostsAxios = async (
+  path: string,
+  editData: editCarPostType
+): Promise<carPostType[] | any> => {
+  try {
+    const { data, status } = await axios({
+      method: 'put',
+      url: dbUrl + path,
+      data: editData,
+      headers: { Accept: 'application/json' },
+    })
+    console.log(data)
+    console.log(`server status is ${status}`)
+    return data
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}
+export {
+  allRequestsCarPostsAxios,
+  getAllCarPostsAxios,
+  getSingleCarPostsAxios,
+  addSingleCarPostsAxios,
+  editSingleCarPostsAxios,
+}

@@ -1,4 +1,6 @@
 $bgrdColorGrayTheme: #d6d8dd;
+$buttonPrimaryColor: rgb(10, 161, 141);
+$buttonSecondaryColor: rgb(247, 33, 219);
 .SpecificPost {
   &__content {
     background-color: $bgrdColorGrayTheme;
@@ -10,6 +12,78 @@ $bgrdColorGrayTheme: #d6d8dd;
       background-color: $bgrdColorGrayTheme;
       text-transform: uppercase;
       letter-spacing: 2px;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+    }
+    &__image {
+      background-color: antiquewhite;
+      padding: 10px;
+    }
+    &__desc {
+      background-color: rgb(67, 1, 73);
+      color: rgb(202, 202, 202);
+    }
+    &__button {
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: $buttonPrimaryColor;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin: 1rem;
+      text-decoration: none;
+      &:hover {
+        background-color: $buttonSecondaryColor;
+      }
+    }
+  }
+}
+.editModal {
+  background-color: rgb(187, 238, 238);
+  color: aliceblue;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  height: 80%;
+  width: 50%;
+  right: auto;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+  border-radius: 7px;
+  &__content {
+    background-color: #e1f5ce;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & h5 {
+      background-color: rgb(4, 134, 91);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      text-align: center;
+    }
+    & input {
+      background-color: cadetblue;
+    }
+    & label {
+      background-color: rgb(121, 216, 203);
+    }
+    & select {
+      background-color: rgb(151, 247, 159);
+    }
+    & button {
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: $buttonPrimaryColor;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin: 1rem;
+      text-decoration: none;
+      &:hover {
+        background-color: $buttonSecondaryColor;
+      }
     }
   }
 }

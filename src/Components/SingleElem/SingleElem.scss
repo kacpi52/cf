@@ -34,11 +34,9 @@ $buttonSecondaryColor: rgb(247, 33, 219);
       letter-spacing: 2px;
       text-transform: uppercase;
       margin: 1rem;
+      text-decoration: none;
       &:hover {
         background-color: $buttonSecondaryColor;
-      }
-      & a {
-        text-decoration: none;
       }
     }
   }

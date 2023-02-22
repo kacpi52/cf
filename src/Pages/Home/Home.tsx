@@ -3,11 +3,12 @@ import { Container, Row, Col } from 'react-bootstrap'
 import './Home.scss'
 import NavBar from '../../Components/NavBar/NavBar'
 import SingleElem from 'src/Components/SingleElem/SingleElem'
-import { allRequestsCarPostsAxios, carPostType } from 'src/lib/apiService'
+import { allRequestsCarPostsAxios } from 'src/lib/apiService'
+import { carPostType } from 'src/utils/sharedTypes'
 
 const Home: React.FC = () => {
   const [loadingState, setLoadingState] = useState<boolean>(true),
-    [loadDataError, setLoadDataError] = useState<boolean>(false),
+    [loadDataError, setLoadDataError] = useState<boolean>(false), // jak zalatwic wlasnie jakies pokazywanie bledow
     [postDataState, setPostDataState] = useState<carPostType[]>([])
   useEffect(() => {
     const getDataFromApi = async () => {
@@ -33,14 +34,18 @@ const Home: React.FC = () => {
     <div className="home">
       <NavBar />
       <div className="home__content">
-        <Container>
-          <Row className="justify-content-md-center">
-            <Col xs lg="2" className="home__content__title">
-              Home Page
-            </Col>
-          </Row>
-          <Row className="justify-content-md-center">{renderAllPosts()}</Row>
-        </Container>
+        {loadingState ? (
+          <h1>loading icon</h1>
+        ) : (
+          <Container>
+            <Row className="justify-content-md-center">
+              <Col xs lg="2" className="home__content__title">
+                Home Page
+              </Col>
+            </Row>
+            <Row className="justify-content-md-center">{renderAllPosts()}</Row>
+          </Container>
+        )}
       </div>
     </div>
   )

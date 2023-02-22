@@ -2,17 +2,30 @@ import React, { useEffect, useState } from 'react'
 import './SpecificPost.scss'
 import NavBar from 'src/Components/NavBar/NavBar'
 import { useLocation } from 'react-router-dom'
-import { carPostType, getSingleCarPostsAxios } from 'src/lib/apiService'
+import { Container, Row, Col } from 'react-bootstrap'
+import { getSingleCarPostsAxios } from 'src/lib/apiService'
+import { carPostType } from 'src/utils/sharedTypes'
+import PostDetails from 'src/Components/PostDetails/PostDetails'
+import AddEditPostModal from 'src/Components/AddEditPostModal/AddEditPostModal'
 
 const SpecificPost: React.FC = () => {
   const [loadingState, setLoadingState] = useState(true),
-    [loadDataError, setLoadDataError] = useState(false),
-    [postDataState, setPostDataState] = useState<carPostType>()
+    [reloadTrigger, setReloadTrigger] = useState(false),
+    [loadDataError, setLoadDataError] = useState(false), // to samo co z oblusga bledow
+    [postDataState, setPostDataState] = useState<carPostType>(),
+    [isOpenModal, setIsOpenModal] = useState(false)
   const { state } = useLocation()
-  const url = state.id.toString()
+  const idSelectedPost = state.id.toString()
+  const toggleModal = (val: boolean) => {
+    setIsOpenModal(val)
+    setReloadTrigger(!reloadTrigger)
+  }
+
   useEffect(() => {
     const getDataFromApi = async () => {
-      const loadedData = await getSingleCarPostsAxios(`/carposts/${url}`)
+      const loadedData = await getSingleCarPostsAxios(
+        `/carposts/${idSelectedPost}`
+      )
       setLoadingState(false)
       setPostDataState(loadedData)
     }
@@ -21,19 +34,40 @@ const SpecificPost: React.FC = () => {
     } catch (error) {
       setLoadDataError(true)
     }
-  }, [])
-  return (
+  }, [reloadTrigger])
+
+  return loadingState ? (
+    <div>Loading icon</div>
+  ) : (
     <div className="SpecificPost">
       <NavBar />
-      <div className="SpecificPost__content">konkretny post</div>
-      <div>id to ${postDataState?._id}</div>
-      <button
-        onClick={() => {
-          console.log(state)
-        }}
-      >
-        przycisk bozy
-      </button>
+      <div className="SpecificPost__content">
+        <Container>
+          <PostDetails {...postDataState!} />
+
+          <Row>
+            <Col className="SpecificPost__content__title">
+              <button
+                className="SpecificPost__content__button"
+                onClick={() => {
+                  setIsOpenModal(true)
+                }}
+              >
+                Edit
+              </button>
+            </Col>
+            <Col className="SpecificPost__content__title">
+              <button className="SpecificPost__content__button">Delete</button>
+            </Col>
+          </Row>
+          <AddEditPostModal
+            {...postDataState}
+            reqMethod="put"
+            toggleModal={toggleModal}
+            isOpenModal={isOpenModal}
+          />
+        </Container>
+      </div>
     </div>
   )
 }
