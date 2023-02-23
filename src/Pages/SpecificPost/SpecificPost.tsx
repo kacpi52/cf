@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import './SpecificPost.scss'
 import NavBar from 'src/Components/NavBar/NavBar'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
-import { getSingleCarPostsAxios } from 'src/lib/apiService'
+import {
+  deleteSingleCarPostsAxios,
+  getSingleCarPostsAxios,
+} from 'src/lib/apiService'
 import { carPostType } from 'src/utils/sharedTypes'
 import PostDetails from 'src/Components/PostDetails/PostDetails'
 import AddEditPostModal from 'src/Components/AddEditPostModal/AddEditPostModal'
@@ -57,7 +60,16 @@ const SpecificPost: React.FC = () => {
               </button>
             </Col>
             <Col className="SpecificPost__content__title">
-              <button className="SpecificPost__content__button">Delete</button>
+              <button
+                className="SpecificPost__content__button"
+                onClick={() => {
+                  deleteSingleCarPostsAxios(
+                    `/carposts/${idSelectedPost}/delete`
+                  )
+                }}
+              >
+                <Link to="/">Delete post</Link>
+              </button>
             </Col>
           </Row>
           <AddEditPostModal

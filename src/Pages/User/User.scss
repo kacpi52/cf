@@ -1,0 +1,25 @@
+$bgrdColorGrayTheme: #d6d8dd;
+$buttonPrimaryColor: rgb(10, 161, 141);
+$buttonSecondaryColor: rgb(247, 33, 219);
+.User {
+  &__content {
+    background-color: $bgrdColorGrayTheme;
+    min-height: 30rem;
+    padding: 10px;
+    margin: 0px 3rem;
+    border-radius: 12px;
+  }
+  & button {
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: $buttonPrimaryColor;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 1rem;
+    text-decoration: none;
+    &:hover {
+      background-color: $buttonSecondaryColor;
+    }
+  }
+}

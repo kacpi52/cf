@@ -73,7 +73,9 @@ const AddEditPostModal: React.FC<addEditPostModalInterface> = ({
       editSingleCarPostsAxios(`/carposts/${_id}/edit`, editData)
       toggleModal(false)
     } else if (reqMethod === 'post') {
-      addSingleCarPostsAxios('carposts/add', editData)
+      addSingleCarPostsAxios('/carposts/add', editData)
+      console.log(editData)
+
       toggleModal(false)
     } else {
       console.log(`wrong method passed `)

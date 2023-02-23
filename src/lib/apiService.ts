@@ -94,10 +94,28 @@ const editSingleCarPostsAxios = async (
     throw error
   }
 }
+const deleteSingleCarPostsAxios = async (
+  path: string
+): Promise<carPostType[] | any> => {
+  try {
+    const { data, status } = await axios({
+      method: 'delete',
+      url: dbUrl + path,
+      headers: { Accept: 'application/json' },
+    })
+    console.log(data)
+    console.log(`server status is ${status}`)
+    return data
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}
 export {
   allRequestsCarPostsAxios,
   getAllCarPostsAxios,
   getSingleCarPostsAxios,
   addSingleCarPostsAxios,
   editSingleCarPostsAxios,
+  deleteSingleCarPostsAxios,
 }
