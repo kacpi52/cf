@@ -1,26 +1,12 @@
 import React, { useState } from 'react'
+import './AddEditPostModal.scss'
 import Modal from 'react-modal'
 import {
   addSingleCarPostsAxios,
   editSingleCarPostsAxios,
 } from 'src/lib/apiService'
-interface addEditPostModalInterface {
-  _id?: string
-  brand?: string
-  model?: string
-  productionYear?: number
-  frontWheelSize?: number
-  frontWheelWide?: number
-  rearWheelSize?: number
-  rearWheelWide?: number
-  isCustomBody?: string
-  kindOfBody?: string
-  isStockSuspension?: string
-  kindOfSuspension?: string
-  reqMethod: string
-  isOpenModal: boolean
-  toggleModal: (val: boolean) => void
-}
+import { addEditPostModalInterface } from 'src/utils/sharedInterfaces'
+
 const AddEditPostModal: React.FC<addEditPostModalInterface> = ({
   _id,
   brand,
@@ -34,24 +20,24 @@ const AddEditPostModal: React.FC<addEditPostModalInterface> = ({
   kindOfBody,
   isStockSuspension,
   kindOfSuspension,
-  isOpenModal,
+  isOpenPostModal,
   toggleModal,
   reqMethod,
 }) => {
-  const [editData, setEditData] = useState({
-    brand,
-    model,
-    productionYear,
-    frontWheelSize,
-    frontWheelWide,
-    rearWheelSize,
-    rearWheelWide,
-    isCustomBody,
-    kindOfBody,
-    isStockSuspension,
-    kindOfSuspension,
-    isOpenModal,
-  })
+  const [errorState, setErrorState] = useState(false),
+    [editData, setEditData] = useState({
+      brand,
+      model,
+      productionYear,
+      frontWheelSize,
+      frontWheelWide,
+      rearWheelSize,
+      rearWheelWide,
+      isCustomBody,
+      kindOfBody,
+      isStockSuspension,
+      kindOfSuspension,
+    })
   const inputChangeHandler = (
     event: React.FormEvent<HTMLInputElement>
   ): void => {
@@ -71,18 +57,17 @@ const AddEditPostModal: React.FC<addEditPostModalInterface> = ({
   const sendAxiosReq = (): void => {
     if (reqMethod === 'put') {
       editSingleCarPostsAxios(`/carposts/${_id}/edit`, editData)
-      toggleModal(false)
+      toggleModal('post')
     } else if (reqMethod === 'post') {
       addSingleCarPostsAxios('/carposts/add', editData)
       console.log(editData)
-
-      toggleModal(false)
+      toggleModal('post')
     } else {
-      console.log(`wrong method passed `)
+      setErrorState(true)
     }
   }
   return (
-    <Modal isOpen={isOpenModal} className="editModal">
+    <Modal isOpen={isOpenPostModal} className="editModal">
       <div className="editModal__content">
         <h5>Edit post</h5>
 
@@ -195,11 +180,11 @@ const AddEditPostModal: React.FC<addEditPostModalInterface> = ({
               sendAxiosReq()
             }}
           >
-            send Edit
+            send
           </button>{' '}
           <button
             onClick={() => {
-              toggleModal(false)
+              toggleModal('post')
             }}
           >
             close

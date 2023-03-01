@@ -9,19 +9,21 @@ import {
 } from 'src/lib/apiService'
 import { carPostType } from 'src/utils/sharedTypes'
 import PostDetails from 'src/Components/PostDetails/PostDetails'
-import AddEditPostModal from 'src/Components/AddEditPostModal/AddEditPostModal'
+import AddEditPostModal from 'src/Components/Modals/AddEditPostModal/AddEditPostModal'
 
 const SpecificPost: React.FC = () => {
   const [loadingState, setLoadingState] = useState(true),
     [reloadTrigger, setReloadTrigger] = useState(false),
     [loadDataError, setLoadDataError] = useState(false), // to samo co z oblusga bledow
     [postDataState, setPostDataState] = useState<carPostType>(),
-    [isOpenModal, setIsOpenModal] = useState(false)
+    [isOpenPostModal, setIsOpenPostModal] = useState(false)
   const { state } = useLocation()
   const idSelectedPost = state.id.toString()
-  const toggleModal = (val: boolean) => {
-    setIsOpenModal(val)
-    setReloadTrigger(!reloadTrigger)
+  const toggleModal = (val: string) => {
+    if (val === 'post') {
+      setIsOpenPostModal(!isOpenPostModal)
+      setReloadTrigger(!reloadTrigger)
+    }
   }
 
   useEffect(() => {
@@ -53,7 +55,7 @@ const SpecificPost: React.FC = () => {
               <button
                 className="SpecificPost__content__button"
                 onClick={() => {
-                  setIsOpenModal(true)
+                  setIsOpenPostModal(true)
                 }}
               >
                 Edit
@@ -76,7 +78,7 @@ const SpecificPost: React.FC = () => {
             {...postDataState}
             reqMethod="put"
             toggleModal={toggleModal}
-            isOpenModal={isOpenModal}
+            isOpenPostModal={isOpenPostModal}
           />
         </Container>
       </div>

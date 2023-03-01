@@ -1,17 +1,25 @@
 import { Router } from 'express'
-import apiActions from 'server/actions/api/apiActions'
+import apiCarPostActions from 'server/actions/api/apiCarPostActions'
+import apiUserActions from 'server/actions/api/apiUserActions'
 
 const apiRouter: Router = Router()
-
+//CARPOST
 //pobieranie wszystkich carpostow
-apiRouter.get('/carposts', apiActions.getAllCarPosts)
+apiRouter.get('/carposts', apiCarPostActions.getAllCarPosts)
 //pobieranie konretnego carposta
-apiRouter.get('/carposts/:id', apiActions.getCarPost)
+apiRouter.get('/carposts/:id', apiCarPostActions.getCarPost)
 //zapisywanie carposta
-apiRouter.post('/carposts/add', apiActions.addCarPost)
+apiRouter.post('/carposts/add', apiCarPostActions.addCarPost)
 //edytowanie
-apiRouter.put('/carposts/:id/edit', apiActions.editCarPost)
+apiRouter.put('/carposts/:id/edit', apiCarPostActions.editCarPost)
 //usuwanie
-apiRouter.delete('/carposts/:id/delete', apiActions.deleteCarPost)
+apiRouter.delete('/carposts/:id/delete', apiCarPostActions.deleteCarPost)
+
+//USER
+
+//pobieranie konkretnego uzytkownika
+apiRouter.get('/user/:id', apiUserActions.getSingleUser)
+//rejestracja uzytkownika
+apiRouter.post('/user/register', apiUserActions.registerUser)
 
 export default apiRouter
