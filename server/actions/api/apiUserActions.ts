@@ -23,6 +23,21 @@ class apiUserActionsClass {
       res.status(500).json({ errors: error.errors })
     }
   }
+  async loginUser(req: Request, res: Response) {
+    try {
+      const user = await User.findOne({ login: req.body.login })
+      if (!user) {
+        throw new Error('user not found')
+      }
+      const isValidPassword = true //user.comparePassword(req.body.password)
+      if (!isValidPassword) {
+        throw new Error('password not valid')
+      }
+      res.status(200).json({ apiToken: user.apiToken }) // do uwierzytelniania  tokenem tylko co dalej z nim
+    } catch (error) {
+      return res.status(401).json({ message: 'Invalid login or password.' })
+    }
+  }
 }
 
 const apiUserActions: apiUserActionsClass = new apiUserActionsClass()

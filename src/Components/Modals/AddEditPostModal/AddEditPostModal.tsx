@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import './AddEditPostModal.scss'
 import Modal from 'react-modal'
 import {
-  addSingleCarPostsAxios,
-  editSingleCarPostsAxios,
-} from 'src/lib/apiService'
+  addSingleDataAxios,
+  editSingleDataAxios,
+} from 'src/lib/apiService/apiCarPostService'
 import { addEditPostModalInterface } from 'src/utils/sharedInterfaces'
 
 const AddEditPostModal: React.FC<addEditPostModalInterface> = ({
@@ -56,10 +56,10 @@ const AddEditPostModal: React.FC<addEditPostModalInterface> = ({
   }
   const sendAxiosReq = (): void => {
     if (reqMethod === 'put') {
-      editSingleCarPostsAxios(`/carposts/${_id}/edit`, editData)
+      editSingleDataAxios(`/carposts/${_id}/edit`, editData)
       toggleModal('post')
     } else if (reqMethod === 'post') {
-      addSingleCarPostsAxios('/carposts/add', editData)
+      addSingleDataAxios('/carposts/add', editData)
       console.log(editData)
       toggleModal('post')
     } else {
@@ -69,7 +69,7 @@ const AddEditPostModal: React.FC<addEditPostModalInterface> = ({
   return (
     <Modal isOpen={isOpenPostModal} className="editModal">
       <div className="editModal__content">
-        <h5>Edit post</h5>
+        <h5>{reqMethod === 'put' ? 'Edit post ' : 'Add post'}</h5>
 
         <label>
           Brand
@@ -142,7 +142,9 @@ const AddEditPostModal: React.FC<addEditPostModalInterface> = ({
             value={editData?.isCustomBody}
           >
             <option value={'true'}>Yes</option>
-            <option value={'false'}>No</option>
+            <option value={'false'} defaultChecked={true}>
+              No
+            </option>
           </select>
         </label>
         <label>
@@ -162,7 +164,9 @@ const AddEditPostModal: React.FC<addEditPostModalInterface> = ({
             value={editData?.isStockSuspension}
           >
             <option value={'true'}>Yes</option>
-            <option value={'false'}>No</option>
+            <option value={'false'} defaultChecked={true}>
+              No
+            </option>
           </select>
         </label>
         <label>

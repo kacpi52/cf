@@ -26,3 +26,18 @@ export type editCarPostType = {
   isStockSuspension?: string
   kindOfSuspension?: string
 }
+
+export type userType = {
+  _id: string
+  login: string
+  email: string
+  password: string
+  isAdmin: boolean
+}
+export type editUserType = {
+  _id?: string
+  login?: string
+  email?: string
+  password?: string
+  isAdmin?: boolean
+}

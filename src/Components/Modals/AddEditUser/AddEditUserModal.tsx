@@ -2,6 +2,10 @@ import React, { useState } from 'react'
 import './AddEditUserModal.scss'
 import Modal from 'react-modal'
 import { addEditUserModalInterface } from 'src/utils/sharedInterfaces'
+import {
+  addSingleUserAxios,
+  editSingleUserAxios,
+} from 'src/lib/apiService/apiUserService'
 
 const AddEditUserModal: React.FC<addEditUserModalInterface> = ({
   _id,
@@ -39,11 +43,11 @@ const AddEditUserModal: React.FC<addEditUserModalInterface> = ({
     }
   }
   const sendAxiosReq = (): void => {
-    if (reqMethod === 'put') {
-      //edit(`/user/${_id}/edit`, editData)
+    if (reqMethod === 'edit') {
+      editSingleUserAxios(`/user/${_id}/edit`, editData)
       toggleModal('user')
-    } else if (reqMethod === 'post') {
-      //add('/user/register', editData)
+    } else if (reqMethod === 'register') {
+      addSingleUserAxios('/user/register', editData)
       console.log(editData)
       toggleModal('user')
     } else {
@@ -53,7 +57,7 @@ const AddEditUserModal: React.FC<addEditUserModalInterface> = ({
   return (
     <Modal isOpen={isOpenUserModal} className="editModal">
       <div className="editModal__content">
-        <h5>User</h5>
+        <h5>{reqMethod === 'register' ? 'Register' : 'Edit user'}</h5>
 
         <label>
           Login
@@ -86,7 +90,9 @@ const AddEditUserModal: React.FC<addEditUserModalInterface> = ({
           Is admin
           <select name="isAdmin" onChange={selectChangeHandler}>
             <option value="true">Yes</option>
-            <option value="false">No</option>
+            <option value="false" defaultChecked={true}>
+              No
+            </option>
           </select>
         </label>
 

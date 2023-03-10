@@ -31,7 +31,7 @@ class apiCarPostActionsClass {
       await newCarPost.save()
       res.status(201).json(newCarPost)
     } catch (error: any) {
-      res.status(500).json({ errors: error.errors })
+      res.status(500).json({ errors: error.errors }) // dopytac co z ta oblusga bledow i przeniesieniem na fr
     }
   }
   async editCarPost(req: Request, res: Response) {

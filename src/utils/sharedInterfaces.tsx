@@ -41,3 +41,10 @@ export interface addEditUserModalInterface {
   isOpenUserModal: boolean
   toggleModal: (val: string) => void
 }
+export interface userInterface {
+  login: string
+  email: string
+  password: string
+  isAdmin: boolean
+  apiToken: string
+}

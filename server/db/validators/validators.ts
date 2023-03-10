@@ -1,5 +1,5 @@
 const validateEmail = (email: string) => {
-  var re = /\S+@\S+\.\S+/
+  const re = /\S+@\S+\.\S+/
   return re.test(email)
 }
 const checkForbiddenString = (value: string, inputVal: string) => {

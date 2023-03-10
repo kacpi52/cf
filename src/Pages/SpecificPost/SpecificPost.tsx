@@ -4,9 +4,9 @@ import NavBar from 'src/Components/NavBar/NavBar'
 import { Link, useLocation } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 import {
-  deleteSingleCarPostsAxios,
-  getSingleCarPostsAxios,
-} from 'src/lib/apiService'
+  deleteSingleDataAxios,
+  getSingleDataAxios,
+} from 'src/lib/apiService/apiCarPostService'
 import { carPostType } from 'src/utils/sharedTypes'
 import PostDetails from 'src/Components/PostDetails/PostDetails'
 import AddEditPostModal from 'src/Components/Modals/AddEditPostModal/AddEditPostModal'
@@ -28,9 +28,7 @@ const SpecificPost: React.FC = () => {
 
   useEffect(() => {
     const getDataFromApi = async () => {
-      const loadedData = await getSingleCarPostsAxios(
-        `/carposts/${idSelectedPost}`
-      )
+      const loadedData = await getSingleDataAxios(`/carposts/${idSelectedPost}`)
       setLoadingState(false)
       setPostDataState(loadedData)
     }
@@ -65,9 +63,7 @@ const SpecificPost: React.FC = () => {
               <button
                 className="SpecificPost__content__button"
                 onClick={() => {
-                  deleteSingleCarPostsAxios(
-                    `/carposts/${idSelectedPost}/delete`
-                  )
+                  deleteSingleDataAxios(`/carposts/${idSelectedPost}/delete`)
                 }}
               >
                 <Link to="/">Delete post</Link>
