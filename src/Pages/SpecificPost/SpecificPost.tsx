@@ -7,7 +7,7 @@ import {
   deleteSingleDataAxios,
   getSingleDataAxios,
 } from 'src/lib/apiService/apiCarPostService'
-import { carPostType } from 'src/utils/sharedTypes'
+import { carPostType } from 'src/typings/sharedTypes'
 import PostDetails from 'src/Components/PostDetails/PostDetails'
 import AddEditPostModal from 'src/Components/Modals/AddEditPostModal/AddEditPostModal'
 

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { carPostType, editCarPostType } from 'src/utils/sharedTypes'
+import { carPostType, editCarPostType } from 'src/typings/sharedTypes'
 const dbUrl = 'http://localhost:3021'
 
 const getAllDataAxios = async (path: string): Promise<carPostType[]> => {

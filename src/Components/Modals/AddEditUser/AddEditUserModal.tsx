@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './AddEditUserModal.scss'
 import Modal from 'react-modal'
-import { addEditUserModalInterface } from 'src/utils/sharedInterfaces'
+import { addEditUserModalInterface } from 'src/typings/sharedInterfaces'
 import {
   addSingleUserAxios,
   editSingleUserAxios,

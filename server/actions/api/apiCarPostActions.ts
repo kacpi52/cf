@@ -11,7 +11,7 @@ class apiCarPostActionsClass {
     const singleCarPost = await CarPost.findOne({
       _id: new Types.ObjectId(req.params.id),
     })
-    res.json(singleCarPost) // tu byl send
+    res.json(singleCarPost)
   }
   async addCarPost(req: Request, res: Response) {
     const newCarPost = new CarPost({

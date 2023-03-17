@@ -5,15 +5,15 @@ import isAuthApi from 'server/middleware/isAuthApi'
 
 const apiRouter: Router = Router()
 //CARPOST
-//pobieranie wszystkich carpostow
+//get all carpost data
 apiRouter.get('/carposts', apiCarPostActions.getAllCarPosts)
-//pobieranie konretnego carposta
+//get single carpost data
 apiRouter.get('/carposts/:id', apiCarPostActions.getCarPost)
-//zapisywanie carposta
+//save carpost
 apiRouter.post('/carposts/add', apiCarPostActions.addCarPost)
-//edytowanie
+//edit carpost
 apiRouter.put('/carposts/:id/edit', isAuthApi, apiCarPostActions.editCarPost)
-//usuwanie
+//delete carpost
 apiRouter.delete(
   '/carposts/:id/delete',
   isAuthApi,
@@ -22,11 +22,12 @@ apiRouter.delete(
 
 //USER
 
-//pobieranie konkretnego uzytkownika
+//get data about single user
 apiRouter.get('/user/:id', apiUserActions.getSingleUser)
-//rejestracja uzytkownika
+//register user
 apiRouter.post('/user/register', apiUserActions.registerUser)
-//logowanie uzytkownika
+//login user
 apiRouter.post('/user/login', apiUserActions.loginUser)
-
+//logout user
+apiRouter.post('user/logout', apiUserActions.logoutUser)
 export default apiRouter

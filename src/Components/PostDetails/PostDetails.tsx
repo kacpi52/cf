@@ -1,6 +1,6 @@
 import { Row, Col, Image } from 'react-bootstrap'
 import React from 'react'
-import { carPostDetailInterface } from 'src/utils/sharedInterfaces'
+import { carPostDetailInterface } from 'src/typings/sharedInterfaces'
 
 const PostDetails: React.FC<carPostDetailInterface> = ({
   _id,

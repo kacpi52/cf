@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose'
 import { validateEmail } from '../validators/validators'
 import bcrypt from 'bcrypt'
-import { userInterface } from 'src/utils/sharedInterfaces'
+import { userInterface } from 'src/typings/sharedInterfaces'
 import randomstring from 'randomstring'
 
 const userSchema = new Schema<userInterface>({

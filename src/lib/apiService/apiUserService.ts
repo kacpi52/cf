@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { userType, editUserType } from 'src/utils/sharedTypes'
+import { userType, editUserType } from 'src/typings/sharedTypes'
 const dbUrl = 'http://localhost:3021'
 
 const getAllUserAxios = async (path: string): Promise<userType[]> => {

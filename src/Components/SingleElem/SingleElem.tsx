@@ -2,7 +2,7 @@ import React from 'react'
 import { Image } from 'react-bootstrap'
 import './SingleElem.scss'
 import { Link } from 'react-router-dom'
-import { carPostDetailInterface } from 'src/utils/sharedInterfaces'
+import { carPostDetailInterface } from 'src/typings/sharedInterfaces'
 
 const SingleElem: React.FC<carPostDetailInterface> = ({
   _id,

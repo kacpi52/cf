@@ -1,6 +1,8 @@
 import { Request, Response } from 'express'
 import { Types } from 'mongoose'
+import bcrypt from 'bcrypt'
 import User from 'server/db/models/user'
+import { sessionName } from 'server/config'
 
 class apiUserActionsClass {
   async getSingleUser(req: Request, res: Response) {
@@ -29,13 +31,31 @@ class apiUserActionsClass {
       if (!user) {
         throw new Error('user not found')
       }
-      const isValidPassword = true //user.comparePassword(req.body.password)
-      if (!isValidPassword) {
-        throw new Error('password not valid')
+      const isValidPassword = bcrypt.compareSync(
+        req.body.password,
+        user.password
+      )
+      if (isValidPassword) {
+        const { login } = user
+        const userId = user._id.toString()
+        req.session.user = { userId, login }
+
+        res.status(200).json(req.session.user) // do uwierzytelniania  tokenem tylko co dalej z nim
+      } else {
+        throw new Error('bad password')
       }
-      res.status(200).json({ apiToken: user.apiToken }) // do uwierzytelniania  tokenem tylko co dalej z nim
     } catch (error) {
       return res.status(401).json({ message: 'Invalid login or password.' })
+    }
+  }
+  logoutUser(req: Request, res: Response) {
+    try {
+      if (req.session.user) {
+        res.clearCookie(sessionName)
+        res.status(200)
+      }
+    } catch (error: any) {
+      res.status(422).json({ errors: error.errors })
     }
   }
 }

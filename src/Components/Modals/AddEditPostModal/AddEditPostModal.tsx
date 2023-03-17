@@ -5,7 +5,7 @@ import {
   addSingleDataAxios,
   editSingleDataAxios,
 } from 'src/lib/apiService/apiCarPostService'
-import { addEditPostModalInterface } from 'src/utils/sharedInterfaces'
+import { addEditPostModalInterface } from 'src/typings/sharedInterfaces'
 
 const AddEditPostModal: React.FC<addEditPostModalInterface> = ({
   _id,

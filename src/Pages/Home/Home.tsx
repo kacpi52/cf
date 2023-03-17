@@ -4,7 +4,7 @@ import './Home.scss'
 import NavBar from '../../Components/NavBar/NavBar'
 import SingleElem from 'src/Components/SingleElem/SingleElem'
 import { getAllDataAxios } from 'src/lib/apiService/apiCarPostService'
-import { carPostType } from 'src/utils/sharedTypes'
+import { carPostType } from 'src/typings/sharedTypes'
 
 const Home: React.FC = () => {
   const [loadingState, setLoadingState] = useState<boolean>(true),
