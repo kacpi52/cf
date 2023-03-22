@@ -5,10 +5,13 @@ import session from 'express-session'
 import connectStore from 'connect-mongo'
 import cors from 'cors'
 import { database, sessionKeySecret, sessionName } from './config'
+import passport from 'passport'
+import './passport/passportSetup'
+//db init
+import './db/mongoose'
 
 const app: Express = express()
-//init db
-require('./db/mongoose') // moze poprawic na es2018 import itd
+
 //middleware session, public, body parser
 app.use(express.urlencoded({ extended: true })) // to chyba niepotrzebnie wogole bo nie bede tak wysylal
 app.use(bodyParser.json())
@@ -27,12 +30,10 @@ app.use(
     cookie: { sameSite: true, maxAge: 1000 * 60 * 60 * 24 },
   })
 )
-declare module 'express-session' {
-  interface SessionData {
-    user: { userId: string; login: string }
-  }
-}
+app.use(passport.initialize())
+app.use(passport.session())
 
 //mount routes
 app.use(apiRouter)
+
 export default app

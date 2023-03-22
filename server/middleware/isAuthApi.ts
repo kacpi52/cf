@@ -5,13 +5,11 @@ async function isAuthApi(
   res: Response,
   next: (err?: Error) => void
 ) {
-  const sessionAuth = req.session.user
-  if (!sessionAuth) return res.status(403)
-  if (sessionAuth) {
-    res.status(201)
+  if (req.isAuthenticated()) {
+    next()
+  } else {
+    res.status(403).json({ errors: 'Unauthorized access.' })
   }
-
-  next()
 }
 
 export default isAuthApi

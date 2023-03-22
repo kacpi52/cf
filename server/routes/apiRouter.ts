@@ -30,4 +30,5 @@ apiRouter.post('/user/register', apiUserActions.registerUser)
 apiRouter.post('/user/login', apiUserActions.loginUser)
 //logout user
 apiRouter.post('user/logout', apiUserActions.logoutUser)
+
 export default apiRouter
