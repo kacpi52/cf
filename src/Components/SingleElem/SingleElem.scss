@@ -1,43 +1,38 @@
-$bgrdColorBlue: #2c1036;
-$contentBgrdColorGray: #f0f0f3;
-$buttonPrimaryColor: rgb(10, 161, 141);
-$buttonSecondaryColor: rgb(247, 33, 219);
+@use '../../stylings' as s;
 .singleElem {
-  background-color: $bgrdColorBlue;
-  margin: 1rem;
-  padding: 1rem;
-  border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  &__title {
-    color: antiquewhite;
-    letter-spacing: 1px;
+  margin: 1rem;
+  padding: 1.3rem;
+  border-radius: 2rem;
+  border: 1px solid transparent;
+  transition: all 400ms ease;
+  background: s.$bg-color-variant;
+  &:hover {
+    border-color: s.$text-color-primary-variant;
+    background: transparent;
   }
-  &__content {
-    background-color: $contentBgrdColorGray;
-    &__image {
-      max-width: 100px;
-      max-height: 10px;
-    }
-    &__desc {
-      background-color: #f0f0f3;
-      color: brown;
-    }
-    &__button {
-      cursor: pointer;
-      border: none;
-      border-radius: 5px;
-      background-color: $buttonPrimaryColor;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin: 1rem;
-      text-decoration: none;
-      &:hover {
-        background-color: $buttonSecondaryColor;
-      }
-    }
+
+  &__title {
+    margin: 1vh;
+    letter-spacing: 1px;
+    font-weight: 600;
+    font-size: 1.2rem;
+  }
+
+  &__image {
+    border-radius: 1.3rem;
+    overflow: hidden;
+  }
+  &__desc {
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+  }
+
+  &__link {
+    text-decoration: none;
   }
 }

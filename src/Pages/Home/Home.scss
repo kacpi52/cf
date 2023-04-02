@@ -1,15 +1,12 @@
 $bgrdColorGrayTheme: #e5e7eb;
 .home {
   &__content {
-    background-color: $bgrdColorGrayTheme;
     min-height: 30rem;
     padding: 10px;
-    margin: 0px 3rem;
+    margin: 1rem 3rem;
     border-radius: 12px;
     &__title {
-      background-color: $bgrdColorGrayTheme;
       text-transform: uppercase;
-      letter-spacing: 2px;
     }
   }
 }

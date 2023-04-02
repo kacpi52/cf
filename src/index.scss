@@ -1,15 +1,92 @@
-$mainBgrdColor: #060a2d;
+@use './stylings' as s;
+
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  background-color: $mainBgrdColor;
+  border: 0;
+  outline: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  background-color: s.$bg-color-primary;
+  font-family: s.$font-main;
+  color: s.$text-color-primary;
+  line-height: 1.7;
+}
+html {
+  scroll-behavior: smooth;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.gradient_bg {
+  /* ff 3.6+ */
+  background: -moz-radial-gradient(
+    circle at 3% 25%,
+    rgba(0, 40, 83, 1) 0%,
+    rgba(9, 27, 53, 1) 100%
+  );
+
+  /* safari 5.1+,chrome 10+ */
+  background: -webkit-radial-gradient(
+    circle at 3% 25%,
+    rgba(0, 40, 83, 1) 0%,
+    rgba(9, 27, 53, 1) 100%
+  );
+
+  /* opera 11.10+ */
+  background: -o-radial-gradient(
+    circle at 3% 25%,
+    rgba(0, 40, 83, 1) 0%,
+    rgba(9, 27, 53, 1) 100%
+  );
+
+  /* ie 10+ */
+  background: -ms-radial-gradient(
+    circle at 3% 25%,
+    rgba(0, 40, 83, 1) 0%,
+    rgba(9, 27, 53, 1) 100%
+  );
+
+  /* global 92%+ browsers support */
+  background: radial-gradient(
+    circle at 3% 25%,
+    rgba(0, 40, 83, 1) 0%,
+    rgba(9, 27, 53, 1) 100%
+  );
+}
+.container {
+  width: s.$container-width-lg;
+  margin: 0 auto;
+  text-align: center;
+}
+h1,
+h2 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 3px;
+}
+.btn-block {
+  width: max-content;
+  display: inline-block;
+  color: s.$text-color-primary;
+  margin: 1vh;
+  padding: 0.7rem 1.2rem;
+  cursor: pointer;
+  border: 1px solid s.$text-color-primary;
+  border-radius: 0.4rem;
+  transition: all 400ms ease;
+  text-decoration: none;
+  &:hover {
+    background: s.$text-color-light;
+    color: s.$bg-color-primary;
+    border-color: transparent;
+  }
+}
+.btn-primary {
+  background: s.$text-color-primary;
+  color: s.$bg-color-primary;
+}
+img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
 }

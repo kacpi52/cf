@@ -33,17 +33,17 @@ const Home: React.FC = () => {
   return (
     <div className="home">
       <NavBar />
-      <div className="home__content">
+      <div className="home__content gradient_bg">
         {loadingState ? (
           <h1>loading icon</h1>
         ) : (
-          <Container>
+          <Container className="container">
             <Row className="justify-content-md-center">
               <Col xs lg="2" className="home__content__title">
-                Home Page
+                <h1>All cars</h1>
               </Col>
             </Row>
-            <Row className="justify-content-md-center">{renderAllPosts()}</Row>
+            <Row>{renderAllPosts()}</Row>
           </Container>
         )}
       </div>

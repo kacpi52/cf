@@ -4,22 +4,113 @@ $buttonSecondaryColor: rgb(247, 33, 219);
 .User {
   &__content {
     background-color: $bgrdColorGrayTheme;
-    min-height: 30rem;
+    min-height: 90vh;
     padding: 10px;
     margin: 0px 3rem;
     border-radius: 12px;
-  }
-  & button {
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    background-color: $buttonPrimaryColor;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin: 1rem;
-    text-decoration: none;
-    &:hover {
-      background-color: $buttonSecondaryColor;
+    &__loginBox {
+      display: flex;
+      background-color: #1c1c1c;
+      border-radius: 8px;
+      justify-content: center;
+      & form {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        inset: 4px;
+        padding: 10vh 8vh;
+        background: #222;
+        border: solid 1px #66e9fa;
+        border-radius: 8px;
+        z-index: 2;
+        & h2 {
+          color: #fff;
+          font-weight: 500;
+          text-align: center;
+          letter-spacing: 0.15rem;
+        }
+      }
+      &__inputBox {
+        margin-top: 2.2rem;
+        position: relative;
+        & input {
+          position: relative;
+          width: 100%;
+          padding: 20px 10px 10px;
+          background: transparent;
+          border: none;
+          outline: none;
+          box-shadow: none;
+          color: #23242a;
+          font-size: 1em;
+          letter-spacing: 0.05em;
+          transition: 0.5s ease-in;
+          z-index: 10;
+        }
+        & span {
+          position: absolute;
+          left: 0;
+          background-color: transparent;
+          padding: 20px 10px 10px;
+          pointer-events: none;
+          color: #8f8f8f;
+          font-size: 1em;
+          letter-spacing: 0.05em;
+          transition: 0.5s ease-in;
+          z-index: 11;
+        }
+        & input:valid ~ span,
+        & input:focus ~ span {
+          color: #fff;
+          font-size: 0.75em;
+          transform: translateY(-34px);
+        }
+        & i {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          height: 2px;
+          background: #e7e7e7;
+          border-radius: 4px;
+          overflow: hidden;
+          transition: 0.5s ease-in;
+          pointer-events: none;
+        }
+        & input:valid ~ i,
+        & input:focus ~ i {
+          height: 44px;
+        }
+      }
+      &__linkBox {
+        display: flex;
+        justify-content: space-between;
+        & a {
+          margin: 10px 0;
+          font-size: 0.75em;
+          color: #8f8f8f;
+          text-decoration: none;
+          &:hover,
+          &:nth-child(2) {
+            color: #fff;
+          }
+        }
+      }
+      &__button {
+        border: 1px solid rgb(66, 169, 253);
+        outline: none;
+        padding: 9px 25px;
+        background: #fff;
+        cursor: pointer;
+        font-size: 0.9em;
+        border-radius: 5px;
+        font-weight: 600;
+        width: 100px;
+        margin-top: 10px;
+        &:hover {
+          opacity: 0.75;
+        }
+      }
     }
   }
 }

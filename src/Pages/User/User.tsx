@@ -23,11 +23,14 @@ const User: React.FC = () => {
       <div className="User__content">
         <Container>
           <Row>
-            <Col>User Page</Col>
+            <Col>
+              <h1>User Page</h1>
+            </Col>
           </Row>
           <Row>
             <Col xs={6}>
               <button
+                className="btn-block"
                 onClick={() => {
                   setIsOpenPostModal(true)
                 }}
@@ -37,12 +40,39 @@ const User: React.FC = () => {
             </Col>
             <Col xs={6}>
               <button
+                className="btn-block"
                 onClick={() => {
                   setIsOpenUserModal(true)
                 }}
               >
                 Add new user
               </button>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <div className="User__content__loginBox">
+                <form>
+                  <h2>Sign in</h2>
+                  <div className="User__content__loginBox__inputBox">
+                    <input type="text" required={true} />
+                    <span>Username</span>
+                    <i></i>
+                  </div>
+                  <div className="User__content__loginBox__inputBox">
+                    <input type="password" required={true} />
+                    <span>Password</span>
+                    <i></i>
+                  </div>
+                  <div className="User__content__loginBox__linkBox">
+                    <a href="/">Forgot Password</a>
+                    <a href="/">Signup</a>
+                  </div>
+                  <button className="User__content__loginBox__button">
+                    Login
+                  </button>
+                </form>
+              </div>
             </Col>
           </Row>
         </Container>

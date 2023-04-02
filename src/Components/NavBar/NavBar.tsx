@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom'
 import './NavBar.scss'
 const NavBar = () => {
   return (
-    <div className="NavBar">
+    <div className="gradient_bg NavBar">
       <span className="NavBar__logo">Car Fitment</span>
+
       <nav>
         <ul className="NavBar__links">
           <li>
