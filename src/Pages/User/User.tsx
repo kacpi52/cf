@@ -4,11 +4,46 @@ import { Container, Row, Col } from 'react-bootstrap'
 import NavBar from 'src/Components/NavBar/NavBar'
 import AddEditPostModal from 'src/Components/Modals/AddEditPostModal/AddEditPostModal'
 import AddEditUserModal from 'src/Components/Modals/AddEditUser/AddEditUserModal'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLock } from '@fortawesome/free-solid-svg-icons'
+import { faUser } from '@fortawesome/free-regular-svg-icons'
+import { addEditUserInterface } from 'src/typings/sharedInterfaces'
+import { loginUserAxios } from 'src/lib/apiService/apiUserService'
+import { loginUserType } from 'src/typings/sharedTypes'
 
-const User: React.FC = () => {
+const User: React.FC<loginUserType> = ({ email, password }) => {
   const [isOpenUserModal, setIsOpenUserModal] = useState(false),
-    [isOpenPostModal, setIsOpenPostModal] = useState(false)
+    [isOpenPostModal, setIsOpenPostModal] = useState(false),
+    [errorState, setErrorState] = useState(false),
+    [loginData, setLoginData] = useState({ email, password })
 
+  const inputChangeHandler = (
+    event: React.FormEvent<HTMLInputElement>
+  ): void => {
+    setLoginData({
+      ...loginData,
+      [event.currentTarget.name]: event.currentTarget.value,
+    })
+  }
+  const selectChangeHandler = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ): void => {
+    if (event.currentTarget.value === 'false') {
+      setLoginData({
+        ...loginData,
+        [event.currentTarget.name]: false,
+      })
+    } else if (event.currentTarget.value === 'true') {
+      setLoginData({
+        ...loginData,
+        [event.currentTarget.name]: true,
+      })
+    }
+  }
+  const sendAxiosReq = (): void => {
+    console.log(loginData)
+    loginUserAxios('/user/login', loginData)
+  }
   const toggleModal = (val: string) => {
     if (val === 'user') {
       setIsOpenUserModal(!isOpenUserModal)
@@ -52,26 +87,48 @@ const User: React.FC = () => {
           <Row>
             <Col>
               <div className="User__content__loginBox">
-                <form>
+                <section>
                   <h2>Sign in</h2>
                   <div className="User__content__loginBox__inputBox">
-                    <input type="text" required={true} />
-                    <span>Username</span>
+                    <input
+                      type="text"
+                      name="email"
+                      required={true}
+                      onChange={inputChangeHandler}
+                      value={loginData?.email}
+                    />
+                    <span>
+                      <FontAwesomeIcon icon={faUser} /> E-mail
+                    </span>
                     <i></i>
                   </div>
                   <div className="User__content__loginBox__inputBox">
-                    <input type="password" required={true} />
-                    <span>Password</span>
+                    <input
+                      type="password"
+                      required={true}
+                      name="password"
+                      onChange={inputChangeHandler}
+                      value={loginData?.password}
+                    />
+                    <span>
+                      <FontAwesomeIcon icon={faLock} /> Password
+                    </span>
                     <i></i>
                   </div>
                   <div className="User__content__loginBox__linkBox">
                     <a href="/">Forgot Password</a>
-                    <a href="/">Signup</a>
+                    <a href="/register">Register</a>
                   </div>
-                  <button className="User__content__loginBox__button">
+
+                  <button
+                    className="User__content__loginBox__button"
+                    onClick={() => {
+                      sendAxiosReq()
+                    }}
+                  >
                     Login
                   </button>
-                </form>
+                </section>
               </div>
             </Col>
           </Row>

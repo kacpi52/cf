@@ -25,7 +25,7 @@ const userSchema = new Schema<userInterface>({
     required: true,
     minlength: [4, 'Password has to be longer than 4 characters.'],
   },
-  isAdmin: { type: Boolean },
+  isAdmin: { type: Boolean, default: false },
   apiToken: String,
 })
 

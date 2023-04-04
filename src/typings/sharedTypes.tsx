@@ -7,9 +7,9 @@ export type carPostType = {
   frontWheelWide: number
   rearWheelSize: number
   rearWheelWide: number
-  isCustomBody: string
+  isCustomBody: boolean
   kindOfBody?: string
-  isStockSuspension: string
+  isStockSuspension: boolean
   kindOfSuspension: string
 }
 export type editCarPostType = {
@@ -21,9 +21,9 @@ export type editCarPostType = {
   frontWheelWide?: number
   rearWheelSize?: number
   rearWheelWide?: number
-  isCustomBody?: string
+  isCustomBody?: boolean
   kindOfBody?: string
-  isStockSuspension?: string
+  isStockSuspension?: boolean
   kindOfSuspension?: string
 }
 
@@ -32,7 +32,7 @@ export type userType = {
   login: string
   email: string
   password: string
-  isAdmin: boolean
+  isAdmin?: boolean
 }
 export type editUserType = {
   _id?: string
@@ -40,4 +40,8 @@ export type editUserType = {
   email?: string
   password?: string
   isAdmin?: boolean
+}
+export type loginUserType = {
+  email?: string
+  password?: string
 }

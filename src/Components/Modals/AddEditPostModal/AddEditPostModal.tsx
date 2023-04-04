@@ -49,10 +49,17 @@ const AddEditPostModal: React.FC<addEditPostModalInterface> = ({
   const selectChangeHandler = (
     event: React.ChangeEvent<HTMLSelectElement>
   ): void => {
-    setEditData({
-      ...editData,
-      [event.currentTarget.name]: event.currentTarget.value,
-    })
+    if (event.currentTarget.value === 'false') {
+      setEditData({
+        ...editData,
+        [event.currentTarget.name]: false,
+      })
+    } else if (event.currentTarget.value === 'true') {
+      setEditData({
+        ...editData,
+        [event.currentTarget.name]: true,
+      })
+    }
   }
   const sendAxiosReq = (): void => {
     if (reqMethod === 'put') {
@@ -136,11 +143,7 @@ const AddEditPostModal: React.FC<addEditPostModalInterface> = ({
         </label>
         <label>
           Custom Body
-          <select
-            name="isCustomBody"
-            onChange={selectChangeHandler}
-            value={editData?.isCustomBody}
-          >
+          <select name="isCustomBody" onChange={selectChangeHandler}>
             <option value={'true'}>Yes</option>
             <option value={'false'} defaultChecked={true}>
               No
@@ -158,11 +161,7 @@ const AddEditPostModal: React.FC<addEditPostModalInterface> = ({
         </label>
         <label>
           Stock suspension
-          <select
-            name="isStockSuspension"
-            onChange={selectChangeHandler}
-            value={editData?.isStockSuspension}
-          >
+          <select name="isStockSuspension" onChange={selectChangeHandler}>
             <option value={'true'}>Yes</option>
             <option value={'false'} defaultChecked={true}>
               No

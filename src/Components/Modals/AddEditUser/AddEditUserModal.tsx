@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import './AddEditUserModal.scss'
 import Modal from 'react-modal'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLock } from '@fortawesome/free-solid-svg-icons'
+import { faUser } from '@fortawesome/free-regular-svg-icons'
 import { addEditUserModalInterface } from 'src/typings/sharedInterfaces'
 import {
   addSingleUserAxios,
@@ -56,62 +59,67 @@ const AddEditUserModal: React.FC<addEditUserModalInterface> = ({
   }
   return (
     <Modal isOpen={isOpenUserModal} className="editModal">
-      <div className="editModal__content">
-        <h5>{reqMethod === 'register' ? 'Register' : 'Edit user'}</h5>
+      <div className="editModal__loginBox">
+        <form>
+          <h2>{reqMethod === 'register' ? 'Register' : 'Edit user'}</h2>
+          <div className="editModal__loginBox_inputBox">
+            <input
+              type="text"
+              name="login"
+              required={true}
+              onChange={inputChangeHandler}
+              value={editData?.login}
+            />
+            <span>
+              <FontAwesomeIcon icon={faUser} /> Username
+            </span>
+            <i></i>
+          </div>
+          <label>
+            E-mail
+            <input
+              type="text"
+              name="email"
+              onChange={inputChangeHandler}
+              value={editData?.email}
+            />
+          </label>
+          <label>
+            Password
+            <input
+              type="text"
+              name="password"
+              onChange={inputChangeHandler}
+              value={editData?.password}
+            />
+          </label>
+          <label>
+            Is admin
+            <select name="isAdmin" onChange={selectChangeHandler}>
+              <option value="true">Yes</option>
+              <option value="false" defaultChecked={true}>
+                No
+              </option>
+            </select>
+          </label>
 
-        <label>
-          Login
-          <input
-            type="text"
-            name="login"
-            onChange={inputChangeHandler}
-            value={editData.login}
-          />
-        </label>
-        <label>
-          E-mail
-          <input
-            type="text"
-            name="email"
-            onChange={inputChangeHandler}
-            value={editData?.email}
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="text"
-            name="password"
-            onChange={inputChangeHandler}
-            value={editData?.password}
-          />
-        </label>
-        <label>
-          Is admin
-          <select name="isAdmin" onChange={selectChangeHandler}>
-            <option value="true">Yes</option>
-            <option value="false" defaultChecked={true}>
-              No
-            </option>
-          </select>
-        </label>
-
-        <div>
-          <button
-            onClick={() => {
-              sendAxiosReq()
-            }}
-          >
-            send
-          </button>{' '}
-          <button
-            onClick={() => {
-              toggleModal('user')
-            }}
-          >
-            close
-          </button>
-        </div>
+          <div>
+            <button
+              onClick={() => {
+                sendAxiosReq()
+              }}
+            >
+              send
+            </button>{' '}
+            <button
+              onClick={() => {
+                toggleModal('user')
+              }}
+            >
+              close
+            </button>
+          </div>
+        </form>
       </div>
     </Modal>
   )

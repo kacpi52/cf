@@ -80,10 +80,29 @@ const deleteSingleUserAxios = async (path: string): Promise<userType> => {
     throw error
   }
 }
+const loginUserAxios = async (
+  path: string,
+  editData: editUserType
+): Promise<userType> => {
+  try {
+    const { data, status } = await axios({
+      method: 'post',
+      url: dbUrl + path,
+      data: editData,
+      headers: { Accept: 'application/json' },
+    })
+    console.log(`server status is ${status}`)
+    return data
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}
 export {
   getAllUserAxios,
   getSingleUserAxios,
   addSingleUserAxios,
   editSingleUserAxios,
   deleteSingleUserAxios,
+  loginUserAxios,
 }
