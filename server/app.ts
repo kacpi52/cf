@@ -9,13 +9,15 @@ import passport from 'passport'
 import './passport/passportSetup'
 //db init
 import './db/mongoose'
+import cookieParser from 'cookie-parser'
 
 const app: Express = express()
 
 //middleware session, public, body parser
 app.use(express.urlencoded({ extended: true })) // to chyba niepotrzebnie wogole bo nie bede tak wysylal
 app.use(bodyParser.json())
-app.use(cors())
+app.use(cors({ credentials: true, origin: 'http://localhost:3000' }))
+app.use(cookieParser())
 app.use(
   session({
     name: sessionName,

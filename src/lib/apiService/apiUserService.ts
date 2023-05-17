@@ -6,8 +6,7 @@ const getAllUserAxios = async (path: string): Promise<userType[]> => {
   try {
     const { data, status } = await axios({
       method: 'get',
-      url: dbUrl + path,
-      headers: { Accept: 'application/json' },
+      url: path,
     })
     console.log(`server status is ${status}`)
     return data
@@ -20,8 +19,7 @@ const getSingleUserAxios = async (path: string): Promise<userType> => {
   try {
     const { data, status } = await axios({
       method: 'get',
-      url: dbUrl + path,
-      headers: { Accept: 'application/json' },
+      url: path,
     })
     console.log(`server status is ${status}`)
     return data
@@ -37,9 +35,8 @@ const addSingleUserAxios = async (
   try {
     const { data, status } = await axios({
       method: 'post',
-      url: dbUrl + path,
+      url: path,
       data: editData,
-      headers: { Accept: 'application/json' },
     })
     console.log(`server status is ${status}`)
     return data
@@ -55,9 +52,8 @@ const editSingleUserAxios = async (
   try {
     const { data, status } = await axios({
       method: 'put',
-      url: dbUrl + path,
+      url: path,
       data: editData,
-      headers: { Accept: 'application/json' },
     })
     console.log(`server status is ${status}`)
     return data
@@ -70,8 +66,7 @@ const deleteSingleUserAxios = async (path: string): Promise<userType> => {
   try {
     const { data, status } = await axios({
       method: 'delete',
-      url: dbUrl + path,
-      headers: { Accept: 'application/json' },
+      url: path,
     })
     console.log(`server status is ${status}`)
     return data
@@ -82,16 +77,15 @@ const deleteSingleUserAxios = async (path: string): Promise<userType> => {
 }
 const loginUserAxios = async (
   path: string,
-  editData: editUserType
+  loginData: editUserType
 ): Promise<userType> => {
   try {
     const { data, status } = await axios({
       method: 'post',
-      url: dbUrl + path,
-      data: editData,
-      headers: { Accept: 'application/json' },
+      url: path,
+      data: loginData,
     })
-    console.log(`server status is ${status} `)
+    console.log(`server status is ${status} ${JSON.stringify(data)}`)
     return data
   } catch (error) {
     console.log(error)
