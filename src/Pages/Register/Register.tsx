@@ -33,10 +33,13 @@ const Register: React.FC<addEditUserInterface> = ({
     })
   }
 
-  const sendAxiosReq = (): void => {
-    console.log(registerData)
-    const resData = addSingleUserAxios('/user/register', registerData)
-    console.log(resData)
+  const sendAxiosReq = async (): Promise<void> => {
+    try {
+      const resData = await addSingleUserAxios('/user/register', registerData)
+      console.log(resData)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -94,7 +97,7 @@ const Register: React.FC<addEditUserInterface> = ({
                     <i></i>
                   </div>
                   <div className="Register__content__loginBox__linkBox">
-                    <a href="/login">Aready an user? Login</a>
+                    <a href="/user">Aready an user? Login</a>
                   </div>
 
                   <button

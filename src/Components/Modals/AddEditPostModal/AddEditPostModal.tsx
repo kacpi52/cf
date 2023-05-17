@@ -6,6 +6,9 @@ import {
   editSingleDataAxios,
 } from 'src/lib/apiService/apiCarPostService'
 import { addEditPostModalInterface } from 'src/typings/sharedInterfaces'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCar, faCarSide, faTired } from '@fortawesome/free-solid-svg-icons'
+import { faCalendarDays } from '@fortawesome/free-regular-svg-icons'
 
 const AddEditPostModal: React.FC<addEditPostModalInterface> = ({
   _id,
@@ -61,138 +64,186 @@ const AddEditPostModal: React.FC<addEditPostModalInterface> = ({
       })
     }
   }
-  const sendAxiosReq = (): void => {
+  const sendAxiosReq = async (): Promise<void> => {
     if (reqMethod === 'put') {
-      editSingleDataAxios(`/carposts/${_id}/edit`, editData)
+      const editCarPost = await editSingleDataAxios(
+        `/carposts/${_id}/edit`,
+        editData
+      )
+      console.log(editCarPost)
       toggleModal('post')
     } else if (reqMethod === 'post') {
-      addSingleDataAxios('/carposts/add', editData)
-      console.log(editData)
+      const addCarPost = await addSingleDataAxios('/carposts/add', editData)
+      console.log(addCarPost)
       toggleModal('post')
     } else {
       setErrorState(true)
     }
   }
   return (
-    <Modal isOpen={isOpenPostModal} className="editModal">
-      <div className="editModal__content">
-        <h5>{reqMethod === 'put' ? 'Edit post ' : 'Add post'}</h5>
+    <Modal isOpen={isOpenPostModal} className="editModal__content">
+      <div className="editModal__content__formBox">
+        <section>
+          <h2>{reqMethod === 'put' ? 'Edit post ' : 'Add post'}</h2>
 
-        <label>
-          Brand
-          <input
-            type="text"
-            name="brand"
-            onChange={inputChangeHandler}
-            value={editData.brand}
-          />
-        </label>
-        <label>
-          Model
-          <input
-            type="text"
-            name="model"
-            onChange={inputChangeHandler}
-            value={editData?.model}
-          />
-        </label>
-        <label>
-          production Year
-          <input
-            type="number"
-            name="productionYear"
-            onChange={inputChangeHandler}
-            value={editData?.productionYear}
-          />
-        </label>
-        <label>
-          frontWheelSize
-          <input
-            type="number"
-            name="frontWheelSize"
-            onChange={inputChangeHandler}
-            value={editData?.frontWheelSize}
-          />
-        </label>
-        <label>
-          frontWheelWide
-          <input
-            type="number"
-            name="frontWheelWide"
-            onChange={inputChangeHandler}
-            value={editData?.frontWheelWide}
-          />
-        </label>
-        <label>
-          rearWheelSize
-          <input
-            type="number"
-            name="rearWheelSize"
-            onChange={inputChangeHandler}
-            value={editData?.rearWheelSize}
-          />
-        </label>
-        <label>
-          rearWheelWide
-          <input
-            type="number"
-            name="rearWheelWide"
-            onChange={inputChangeHandler}
-            value={editData?.rearWheelWide}
-          />
-        </label>
-        <label>
-          Custom Body
-          <select name="isCustomBody" onChange={selectChangeHandler}>
-            <option value={'true'}>Yes</option>
-            <option value={'false'} defaultChecked={true}>
-              No
-            </option>
-          </select>
-        </label>
-        <label>
-          Kind of body
-          <input
-            type="text"
-            name="kindOfBody"
-            onChange={inputChangeHandler}
-            value={editData?.kindOfBody}
-          />
-        </label>
-        <label>
-          Stock suspension
-          <select name="isStockSuspension" onChange={selectChangeHandler}>
-            <option value={'true'}>Yes</option>
-            <option value={'false'} defaultChecked={true}>
-              No
-            </option>
-          </select>
-        </label>
-        <label>
-          Kind of suspension
-          <input
-            type="text"
-            name="kindOfSuspension"
-            onChange={inputChangeHandler}
-            value={editData?.kindOfSuspension}
-          />
-        </label>
-        <div>
-          <button
-            onClick={() => {
-              sendAxiosReq()
-            }}
-          >
-            send
-          </button>{' '}
-          <button
-            onClick={() => {
-              toggleModal('post')
-            }}
-          >
-            close
-          </button>
-        </div>
+          <div className="editModal__content__formBox__inputBox">
+            <input
+              type="text"
+              name="brand"
+              required={reqMethod === 'put' ? false : true}
+              onChange={inputChangeHandler}
+              value={editData.brand}
+            />
+            <span>
+              <FontAwesomeIcon icon={faCarSide} /> Brand
+            </span>
+            <i></i>
+          </div>
+          <div className="editModal__content__formBox__inputBox">
+            <input
+              type="text"
+              name="model"
+              required={reqMethod === 'put' ? false : true}
+              onChange={inputChangeHandler}
+              value={editData.model}
+            />
+            <span>
+              <FontAwesomeIcon icon={faCar} /> Model
+            </span>
+            <i></i>
+          </div>
+          <div className="editModal__content__formBox__inputBox">
+            <input
+              type="number"
+              name="productionYear"
+              required={reqMethod === 'put' ? false : true}
+              onChange={inputChangeHandler}
+              value={editData.productionYear}
+            />
+            <span>
+              <FontAwesomeIcon icon={faCalendarDays} /> Production Year
+            </span>
+            <i></i>
+          </div>
+          <div className="editModal__content__formBox__inputBox">
+            <input
+              type="number"
+              name="frontWheelSize"
+              required={reqMethod === 'put' ? false : true}
+              onChange={inputChangeHandler}
+              value={editData.frontWheelSize}
+            />
+            <span>
+              <FontAwesomeIcon icon={faTired} /> Front Wheel Size
+            </span>
+            <i></i>
+          </div>
+          <div className="editModal__content__formBox__inputBox">
+            <input
+              type="number"
+              name="frontWheelWide"
+              required={reqMethod === 'put' ? false : true}
+              onChange={inputChangeHandler}
+              value={editData.frontWheelWide}
+            />
+            <span>
+              <FontAwesomeIcon icon={faTired} /> Front Wheel Wide
+            </span>
+            <i></i>
+          </div>
+          <div className="editModal__content__formBox__inputBox">
+            <input
+              type="number"
+              name="rearWheelSize"
+              required={reqMethod === 'put' ? false : true}
+              onChange={inputChangeHandler}
+              value={editData.rearWheelSize}
+            />
+            <span>
+              <FontAwesomeIcon icon={faTired} /> Rear Wheel Size
+            </span>
+            <i></i>
+          </div>
+          <div className="editModal__content__formBox__inputBox">
+            <input
+              type="number"
+              name="rearWheelWide"
+              required={reqMethod === 'put' ? false : true}
+              onChange={inputChangeHandler}
+              value={editData.rearWheelWide}
+            />
+            <span>
+              <FontAwesomeIcon icon={faTired} /> Rear Wheel Wide
+            </span>
+            <i></i>
+          </div>
+          <div className="editModal__content__formBox__inputBox">
+            <select name="isCustomBody" onChange={selectChangeHandler}>
+              <option value={'true'}>Yes</option>
+              <option value={'false'} defaultChecked={true}>
+                No
+              </option>
+            </select>
+            <span>
+              <FontAwesomeIcon icon={faTired} /> is custom body
+            </span>
+            <i></i>
+          </div>
+          <div className="editModal__content__formBox__inputBox">
+            <input
+              type="text"
+              name="kindOfBody"
+              required={reqMethod === 'put' ? false : true}
+              onChange={inputChangeHandler}
+              value={editData.kindOfBody}
+            />
+            <span>
+              <FontAwesomeIcon icon={faCar} /> kind of body
+            </span>
+            <i></i>
+          </div>
+          <div className="editModal__content__formBox__inputBox">
+            <select name="isStockSuspension" onChange={selectChangeHandler}>
+              <option value={'true'}>Yes</option>
+              <option value={'false'} defaultChecked={true}>
+                No
+              </option>
+            </select>
+            <span>
+              <FontAwesomeIcon icon={faTired} /> is custom body
+            </span>
+            <i></i>
+          </div>
+          <div className="editModal__content__formBox__inputBox">
+            <input
+              type="text"
+              name="kindOfSuspension"
+              required={reqMethod === 'put' ? false : true}
+              onChange={inputChangeHandler}
+              value={editData.kindOfSuspension}
+            />
+            <span>
+              <FontAwesomeIcon icon={faCar} /> kind of suspension
+            </span>
+            <i></i>
+          </div>
+          <div>
+            <button
+              onClick={() => {
+                sendAxiosReq()
+              }}
+            >
+              {reqMethod === 'put' ? 'Edit post ' : 'Add post'}
+            </button>{' '}
+            <button
+              onClick={() => {
+                toggleModal('post')
+              }}
+            >
+              Close
+            </button>
+          </div>
+        </section>
       </div>
     </Modal>
   )

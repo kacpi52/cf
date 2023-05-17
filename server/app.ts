@@ -20,14 +20,14 @@ app.use(
   session({
     name: sessionName,
     secret: sessionKeySecret,
-    saveUninitialized: false,
+    saveUninitialized: true,
     resave: false,
     store: connectStore.create({
       mongoUrl: database,
       collectionName: 'session',
       ttl: 60 * 60 * 24,
     }),
-    cookie: { sameSite: true, maxAge: 1000 * 60 * 60 * 24 },
+    cookie: { maxAge: 1000 * 60 * 60 * 24, secure: false },
   })
 )
 app.use(passport.initialize())

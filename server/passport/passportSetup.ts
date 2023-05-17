@@ -38,9 +38,9 @@ passport.use(
           (err, isMatch) => {
             if (err) throw err
             if (isMatch) {
-              return done(null, selectedUser) // logged in succesfully
+              done(null, selectedUser) // logged in succesfully
             } else {
-              return done(null, false, { message: 'Wrong password or email' })
+              done(null, false, { message: 'Wrong password or email' })
             }
           }
         )

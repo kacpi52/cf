@@ -40,9 +40,12 @@ const User: React.FC<loginUserType> = ({ email, password }) => {
       })
     }
   }
-  const sendAxiosReq = (): void => {
-    console.log(loginData)
-    loginUserAxios('/user/login', loginData)
+  const sendAxiosReq = async (): Promise<void> => {
+    try {
+      const loginRequest = await loginUserAxios('/user/login', loginData)
+    } catch (error: any) {
+      setErrorState(error)
+    }
   }
   const toggleModal = (val: string) => {
     if (val === 'user') {

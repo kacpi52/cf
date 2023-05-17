@@ -6,8 +6,11 @@ async function isAuthApi(
   next: (err?: Error) => void
 ) {
   if (req.isAuthenticated()) {
-    next()
+    console.log(`auth passed`)
+    return next()
   } else {
+    console.log(`auth denied`)
+
     res.status(403).json({ errors: 'Unauthorized access.' })
   }
 }

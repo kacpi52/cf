@@ -1,48 +1,118 @@
 $buttonPrimaryColor: rgb(10, 161, 141);
 $buttonSecondaryColor: rgb(247, 33, 219);
-.editModal {
-  background-color: rgb(187, 238, 238);
-  color: aliceblue;
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  height: 80%;
-  width: 50%;
-  right: auto;
-  bottom: auto;
-  transform: translate(-50%, -50%);
+.editModal__content {
+  display: flex;
+  justify-content: center;
   border-radius: 7px;
-  &__content {
-    background-color: #e1f5ce;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+  resize: vertical;
+  &__formBox {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    & h5 {
-      background-color: rgb(4, 134, 91);
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      text-align: center;
+    margin: 2vh;
+    background-color: #1c1c1c;
+    border-radius: 8px;
+    justify-content: center;
+    min-width: 50%;
+    & section {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      inset: 4px;
+      padding: 10vh 8vh;
+      background: #222;
+      border: solid 1px #66e9fa;
+      border-radius: 8px;
+      z-index: 2;
+      & h2 {
+        color: #fff;
+        font-weight: 500;
+        text-align: center;
+        letter-spacing: 0.15rem;
+      }
     }
-    & input {
-      background-color: cadetblue;
+    &__inputBox {
+      margin-top: 2.2rem;
+      position: relative;
+      & input {
+        position: relative;
+        width: 100%;
+        padding: 20px 10px 10px;
+        background: transparent;
+        border: none;
+        outline: none;
+        box-shadow: none;
+        color: #23242a;
+        font-size: 1em;
+        letter-spacing: 0.05em;
+        transition: 0.5s ease-in;
+        z-index: 10;
+      }
+      & span {
+        position: absolute;
+        left: 0;
+        background-color: transparent;
+        padding: 20px 10px 10px;
+        pointer-events: none;
+        color: #8f8f8f;
+        font-size: 1em;
+        letter-spacing: 0.05em;
+        transition: 0.5s ease-in;
+        z-index: 11;
+      }
+
+      & input:valid ~ span,
+      & input:focus ~ span {
+        color: #fff;
+        font-size: 0.75em;
+        transform: translateY(-34px);
+      }
+      & i {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        background: #e7e7e7;
+        border-radius: 4px;
+        overflow: hidden;
+        transition: 0.5s ease-in;
+        pointer-events: none;
+      }
+      & input:valid ~ i,
+      & input:focus ~ i {
+        height: 44px;
+      }
     }
-    & label {
-      background-color: rgb(121, 216, 203);
+    &__linkBox {
+      display: flex;
+      margin: 1rem 0.3rem;
+      justify-content: space-between;
+      & a {
+        margin: 10px 0;
+        font-size: 0.85em;
+        color: #8f8f8f;
+        text-decoration: none;
+        &:hover,
+        &:nth-child(2) {
+          color: #fff;
+        }
+      }
     }
-    & select {
-      background-color: rgb(151, 247, 159);
-    }
-    & button {
+    &__button {
+      border: 1px solid rgb(66, 169, 253);
+      outline: none;
+      padding: 9px 25px;
+      background: #fff;
       cursor: pointer;
-      border: none;
+      font-size: 0.9em;
       border-radius: 5px;
-      background-color: $buttonPrimaryColor;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin: 1rem;
-      text-decoration: none;
+      font-weight: 600;
+      width: 100px;
+      margin-top: 10px;
       &:hover {
-        background-color: $buttonSecondaryColor;
+        opacity: 0.75;
       }
     }
   }

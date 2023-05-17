@@ -91,7 +91,7 @@ const loginUserAxios = async (
       data: editData,
       headers: { Accept: 'application/json' },
     })
-    console.log(`server status is ${status}`)
+    console.log(`server status is ${status} `)
     return data
   } catch (error) {
     console.log(error)

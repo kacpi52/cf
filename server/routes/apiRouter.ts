@@ -28,6 +28,7 @@ apiRouter.get('/user/:id', apiUserActions.getSingleUser)
 apiRouter.post('/user/register', apiUserActions.registerUser)
 //login user
 apiRouter.post('/user/login', apiUserActions.loginUser)
+
 //logout user
 apiRouter.post('user/logout', apiUserActions.logoutUser)
 
